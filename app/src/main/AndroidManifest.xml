@@ -15,10 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WritingActivity">
-        </activity>
-        <activity android:name=".InstructionActivity">
-		</activity>
+        <activity android:name=".WritingActivity"></activity>
+        <activity android:name=".InstructionActivity"></activity>
+        <activity android:name=".SavedActivity"></activity>
     </application>
 
 </manifest>
