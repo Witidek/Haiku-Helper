@@ -10,6 +10,7 @@ import android.util.Log;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Jason on 3/5/2016.
@@ -18,6 +19,9 @@ public class DBHelper extends SQLiteAssetHelper {
 
     private static final String DATABASE_NAME = "haiku.db";
     private static final int DATABASE_VERSION = 1;
+    private static final int ONE_SYLLABLE_WORDS_MAX = 5121;
+    private static final int TWO_SYLLABLE_WORDS_MAX = 41501;
+    private static final int THREE_SYLLABLE_WORDS_MAX = 50844;
     private static DBHelper instance;
 
     public DBHelper(Context context) {
@@ -73,6 +77,40 @@ public class DBHelper extends SQLiteAssetHelper {
         cursor.close();
         db.close();
         return haikuList;
+    }
+
+    public ArrayList<ArrayList<String>> getSuggestions() {
+        ArrayList<ArrayList<String>> wordsList = new ArrayList<>();
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor;
+        ArrayList<String> words;
+        Random r = new Random();
+        String tableName[] = new String[]{"one_syllable_words", "two_syllable_words", "three_syllable_words"};
+        int tableMax[] = {ONE_SYLLABLE_WORDS_MAX, TWO_SYLLABLE_WORDS_MAX, THREE_SYLLABLE_WORDS_MAX};
+
+        for (int i = 0; i < 3; i++) {
+            String ids = "";
+            for (int j = 0; j < 20; j++) {
+                int result = r.nextInt(tableMax[i]);
+                if (!ids.equals("")) {
+                    ids += ", ";
+                }
+                ids += Integer.toString(result);
+            }
+
+            cursor = db.rawQuery("SELECT word FROM "+tableName[i]+" WHERE ROWID IN ("+ids+");", null);
+            words = new ArrayList<>();
+            words.add(String.format("%d syllable words", i+1));
+            while (cursor.moveToNext()) {
+                words.add(cursor.getString(cursor.getColumnIndex("word")));
+            }
+            wordsList.add(words);
+            cursor.close();
+        }
+
+        db.close();
+        return wordsList;
     }
 
 }

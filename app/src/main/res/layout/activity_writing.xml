@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter title"
+        android:text="Edit Haiku"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -25,21 +25,18 @@
         android:layout_below="@+id/line2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/line3Syllables"
-        android:layout_toStartOf="@+id/line3Syllables" />
+        android:layout_toStartOf="@+id/line1Syllables"
+        android:layout_toLeftOf="@+id/line1Syllables" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Count"
         android:id="@+id/countSyllablesButton"
-        android:onClick="countSyllables"
-        android:layout_marginBottom="37dp"
+        android:onClick="onClickCountSyllables"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="35dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -51,8 +48,8 @@
         android:layout_below="@+id/line1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/line2Syllables"
-        android:layout_toStartOf="@+id/line2Syllables" />
+        android:layout_toStartOf="@+id/button"
+        android:layout_toLeftOf="@+id/button" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -65,13 +62,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="21dp"
-        android:layout_toLeftOf="@+id/line1Syllables"
-        android:layout_toStartOf="@+id/line1Syllables" />
+        android:layout_toStartOf="@+id/button"
+        android:layout_toLeftOf="@+id/button" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="0/5"
         android:id="@+id/line1Syllables"
         android:layout_alignBottom="@+id/line1"
         android:layout_alignParentRight="true"
@@ -84,7 +81,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="0/7"
         android:id="@+id/line2Syllables"
         android:layout_alignBottom="@+id/line2"
         android:layout_alignParentRight="true"
@@ -97,20 +94,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="0/5"
         android:id="@+id/line3Syllables"
         android:layout_alignBottom="@+id/line3"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:gravity="right"
         android:textSize="30dp"
-        android:layout_toEndOf="@+id/button"
-        android:layout_toRightOf="@+id/button" />
+        android:layout_toEndOf="@+id/button4"
+        android:layout_toRightOf="@+id/button4" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titleText"
+        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:singleLine="true"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/textView"
         android:gravity="center"
@@ -118,8 +117,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:text="Title"
-        android:onClick="saveHaiku" />
+        android:text="Title" />
 
     <Button
         android:layout_width="wrap_content"
@@ -127,11 +125,27 @@
         android:text="Save Haiku"
         android:id="@+id/button"
         android:onClick="saveHaiku"
+        android:layout_alignTop="@+id/button4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Suggestions"
+        android:id="@+id/button4"
+        android:onClick="onClickSuggestionActivity"
         android:layout_alignTop="@+id/countSyllablesButton"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp"
-        android:onClick="saveHaiku" />
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/suggestionList"
+        android:layout_below="@+id/line3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:layout_above="@+id/countSyllablesButton" />
 
 </RelativeLayout>

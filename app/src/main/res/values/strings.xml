@@ -3,4 +3,9 @@
     <string name="Training">Tutorial</string>
     <string name="Add">Create Haiku</string>
     <string name="saved">Saved Haiku</string>
+    <string-array name="line_numbers_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>
