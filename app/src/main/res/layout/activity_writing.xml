@@ -131,7 +131,6 @@
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
         android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp"
-        android:onClick="saveHaiku" />
+        android:layout_marginStart="35dp" />
 
 </RelativeLayout>

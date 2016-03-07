@@ -57,9 +57,9 @@ public class WritingActivity extends AppCompatActivity {
             linesText[0].setText(haiku.line1);
             linesText[1].setText(haiku.line2);
             linesText[2].setText(haiku.line3);
-            syllablesText[0].setText(haiku.line1syl);
-            syllablesText[1].setText(haiku.line2syl);
-            syllablesText[2].setText(haiku.line3syl);
+            syllablesText[0].setText(Integer.toString(haiku.line1syl));
+            syllablesText[1].setText(Integer.toString(haiku.line2syl));
+            syllablesText[2].setText(Integer.toString(haiku.line3syl));
         }
     }
 
@@ -139,9 +139,9 @@ public class WritingActivity extends AppCompatActivity {
         Haiku haiku = new Haiku();
 
         haiku.title = titleText.getText().toString();
-        haiku.line1 = lines[0];
-        haiku.line2 = lines[1];
-        haiku.line3 = lines[2];
+        haiku.line1 = linesText[0].getText().toString();
+        haiku.line2 = linesText[1].getText().toString();
+        haiku.line3 = linesText[2].getText().toString();
 
         countSyllables(countSyllablesButton);
 
