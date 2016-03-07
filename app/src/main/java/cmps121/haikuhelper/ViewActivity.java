@@ -8,8 +8,11 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +32,13 @@ public class ViewActivity extends AppCompatActivity {
 
         haiku = getIntent().getParcelableExtra("haiku");
         Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/Victorian.ttf");
+        String title = haiku.title;
+
         TextView textview = (TextView) findViewById(R.id.textView15);
-        textview.setText(haiku.title);
+        if (title.length() > 14){
+            textview.setTextSize(TypedValue.COMPLEX_UNIT_SP,50 );
+        }
+        textview.setText(title);
         textview.setTypeface(custom_font);
         textview = (TextView) findViewById(R.id.textView16);
         textview.setText(haiku.line1);
@@ -58,12 +66,12 @@ public class ViewActivity extends AppCompatActivity {
                             sendIntent.setType("vnd.android-dir/mms-sms");
                             startActivity(sendIntent);
                         }
-                        if (which == 1){
+                        if (which == 1) {
                             Intent emailIntent = new Intent(Intent.ACTION_SEND);
                             emailIntent.setData(Uri.parse("mailto:"));
                             emailIntent.setType("text/plain");
                             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Awesome Haiku");
-                            emailIntent.putExtra(Intent.EXTRA_TEXT   , message);
+                            emailIntent.putExtra(Intent.EXTRA_TEXT, message);
                             startActivity(emailIntent);
                         }
                     }
@@ -73,8 +81,24 @@ public class ViewActivity extends AppCompatActivity {
     }
 
     public void onClickDelete(View view) {
-        db.deleteHaiku(haiku);
-        finish();
+        // Creates AlertDialog to ask user for desired quantity
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ViewActivity.this);
+        alertDialog.setTitle("Delete Haiku");
+        alertDialog.setMessage("Are You Sure You Want to Delete this Haiku?");
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Leaving Blank
+            }
+        });
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                db.deleteHaiku(haiku);
+                finish();
+            }
+        });
+
+        alertDialog.setIcon(R.drawable.alert);
+        alertDialog.show();
     }
 
     public void onClickEdit(View view) {

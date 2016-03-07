@@ -56,15 +56,12 @@ public class SavedAdapter extends ArrayAdapter<Haiku> {
         }
 
         // Fill views with data
-        if(position % 2 == 0){
-            String color = "#e0ebeb";
-            rowView.setBackgroundColor(Color.parseColor(color));
-        }else{
-            String color = "#ffffff";
-            rowView.setBackgroundColor(Color.parseColor(color));
+        String title = haiku.get(position).title;
+        if (title.length() > 18) {
+            title = title.substring(0,18) + "...";
         }
         ViewHolder holder = (ViewHolder) rowView.getTag();
-        holder.titleView.setText(String.format(haiku.get(position).title));
+        holder.titleView.setText(title);
         int totalSyllables = haiku.get(position).line1syl + haiku.get(position).line2syl + haiku.get(position).line3syl;
         if(totalSyllables != 17){
             holder.completeView.setText("No");
