@@ -19,14 +19,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/line3"
+        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:singleLine="true"
         android:background="@android:drawable/edit_text"
-        android:layout_above="@+id/countSyllablesButton"
+        android:layout_below="@+id/line2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="68dp"
-        android:layout_toStartOf="@+id/line3Syllables"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_toLeftOf="@+id/line3Syllables"
+        android:layout_toStartOf="@+id/line3Syllables" />
 
     <Button
         android:layout_width="wrap_content"
@@ -45,25 +45,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/line2"
+        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:singleLine="true"
         android:background="@android:drawable/edit_text"
-        android:layout_above="@+id/line3"
+        android:layout_below="@+id/line1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/line2Syllables"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_toLeftOf="@+id/line2Syllables"
+        android:layout_toStartOf="@+id/line2Syllables" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/line1"
+        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:singleLine="true"
         android:background="@android:drawable/edit_text"
-        android:layout_above="@+id/line2"
+        android:layout_below="@+id/titleText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/line1Syllables"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_marginTop="21dp"
+        android:layout_toLeftOf="@+id/line1Syllables"
+        android:layout_toStartOf="@+id/line1Syllables" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -127,6 +130,7 @@
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
         android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp" />
+        android:layout_marginStart="35dp"
+        android:onClick="saveHaiku" />
 
 </RelativeLayout>

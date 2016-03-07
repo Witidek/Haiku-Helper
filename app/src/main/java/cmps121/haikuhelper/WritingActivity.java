@@ -1,5 +1,6 @@
 package cmps121.haikuhelper;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +49,18 @@ public class WritingActivity extends AppCompatActivity {
         syllablesText[2] = (TextView)findViewById(R.id.line3Syllables);
 
         countSyllablesButton = (Button)findViewById(R.id.countSyllablesButton);
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("haiku")) {
+            Haiku haiku = intent.getParcelableExtra("haiku");
+            titleText.setText(haiku.title);
+            linesText[0].setText(haiku.line1);
+            linesText[1].setText(haiku.line2);
+            linesText[2].setText(haiku.line3);
+            syllablesText[0].setText(haiku.line1syl);
+            syllablesText[1].setText(haiku.line2syl);
+            syllablesText[2].setText(haiku.line3syl);
+        }
     }
 
     public void countSyllables(View view) {
