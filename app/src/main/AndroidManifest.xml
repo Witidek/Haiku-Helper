@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".InstructionActivity" >
         </activity>
+		<activity android:name=".SavedActivity" >
+		</activity>
         <activity android:name=".SuggestionActivity" >
         </activity>
     </application>

@@ -126,6 +126,7 @@
         android:layout_height="wrap_content"
         android:text="Save Haiku"
         android:id="@+id/button"
+        android:onClick="saveHaiku"
         android:layout_alignTop="@+id/countSyllablesButton"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"

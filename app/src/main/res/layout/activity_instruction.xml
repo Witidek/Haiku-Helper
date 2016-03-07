@@ -35,7 +35,8 @@
                 android:textSize="36dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="39dp" />
+                android:layout_marginTop="39dp"
+                android:textColor="#000000" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
                 android:id="@+id/textView11"
                 android:layout_below="@+id/textView10"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="89dp" />
+                android:layout_marginTop="89dp"
+                android:textColor="#000000" />
 
         </RelativeLayout>
     <RelativeLayout
