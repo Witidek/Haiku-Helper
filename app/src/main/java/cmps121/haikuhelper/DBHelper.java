@@ -60,7 +60,7 @@ public class DBHelper extends SQLiteAssetHelper {
         ArrayList<Haiku> haikuList = new ArrayList<Haiku>();
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-        String[] sqlSelect = new String[]{haiku.KEY_id,haiku.KEY_title, haiku.KEY_line1,haiku.KEY_line2,haiku.KEY_line3};
+        String[] sqlSelect = new String[]{haiku.KEY_id,haiku.KEY_title, haiku.KEY_line1,haiku.KEY_line2,haiku.KEY_line3,haiku.KEY_line1syl,haiku.KEY_line2syl,haiku.KEY_line3syl};
         qb.setTables("haiku");
         Cursor cursor = qb.query(db, sqlSelect, null, null, null, null, null);
 
@@ -70,7 +70,10 @@ public class DBHelper extends SQLiteAssetHelper {
             String line1 = cursor.getString(cursor.getColumnIndex(haiku.KEY_line1));
             String line2 = cursor.getString(cursor.getColumnIndex(haiku.KEY_line2));
             String line3 = cursor.getString(cursor.getColumnIndex(haiku.KEY_line3));
-            Haiku listHaiku = new Haiku(id,title,line1,line2,line3);
+            int line1syl = cursor.getInt(cursor.getColumnIndex(haiku.KEY_line1syl));
+            int line2syl = cursor.getInt(cursor.getColumnIndex(haiku.KEY_line2syl));
+            int line3syl = cursor.getInt(cursor.getColumnIndex(haiku.KEY_line3syl));
+            Haiku listHaiku = new Haiku(id,title,line1,line2,line3,line1syl,line2syl,line3syl);
             haikuList.add(listHaiku);
         }
         // Close stuff

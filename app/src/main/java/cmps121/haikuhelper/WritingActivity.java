@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -78,22 +79,6 @@ public class WritingActivity extends AppCompatActivity {
         suggestionAdapter = new SuggestionAdapter(this, wordsList);
         listView = (ListView)findViewById(R.id.suggestionList);
         listView.setAdapter(suggestionAdapter);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                haiku = data.getParcelableExtra("haiku");
-                titleText.setText(haiku.title);
-                linesText[0].setText(haiku.line1);
-                linesText[1].setText(haiku.line2);
-                linesText[2].setText(haiku.line3);
-                syllablesText[0].setText(String.format("%d/5", haiku.line1syl));
-                syllablesText[1].setText(String.format("%d/7", haiku.line2syl));
-                syllablesText[2].setText(String.format("%d/5", haiku.line3syl));
-            }
-        }
     }
 
     public void updateHaiku(final Action onFinished) {
@@ -196,6 +181,7 @@ public class WritingActivity extends AppCompatActivity {
                                             //db.updateHaiku(haiku);
                                         }else {
                                             db.saveHaiku(haiku);
+                                            Toast.makeText(getApplicationContext(), "Haiku saved!", Toast.LENGTH_LONG).show();
                                         }
                                         break;
                                     default:
@@ -222,7 +208,7 @@ public class WritingActivity extends AppCompatActivity {
         updateHaiku(Action.COUNT);
     }
 
-    public void onClickSuggestionActivity(View view) {
+    public void onClickSuggestions(View view) {
         listView.setVisibility(View.VISIBLE);
         suggestionAdapter = new SuggestionAdapter(this, db.getSuggestions());
         listView.setAdapter(suggestionAdapter);

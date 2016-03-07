@@ -34,12 +34,15 @@ public class Haiku implements Parcelable {
         this.line3syl = 0;
     }
 
-    public Haiku(int id, String title, String line1, String line2, String line3) {
+    public Haiku(int id, String title, String line1, String line2, String line3, int line1syl, int line2syl, int line3syl) {
         this.id = id;
         this.title = title;
         this.line1 = line1;
         this.line2 = line2;
         this.line3 = line3;
+        this.line1syl = line1syl;
+        this.line2syl = line2syl;
+        this.line3syl = line3syl;
 
     }
     public String toString() {

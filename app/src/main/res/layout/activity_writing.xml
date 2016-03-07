@@ -134,7 +134,7 @@
         android:layout_height="wrap_content"
         android:text="Suggestions"
         android:id="@+id/button4"
-        android:onClick="onClickSuggestionActivity"
+        android:onClick="onClickSuggestions"
         android:layout_alignTop="@+id/countSyllablesButton"
         android:layout_centerHorizontal="true" />
 
