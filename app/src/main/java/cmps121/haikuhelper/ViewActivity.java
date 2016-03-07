@@ -8,12 +8,14 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ViewActivity extends AppCompatActivity {
-    Haiku haiku = new Haiku();
+    DBHelper db;
+    Haiku haiku;
     String message;
     String [] pick = new String[2];
 
@@ -22,7 +24,10 @@ public class ViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
-        haiku = getIntent().getExtras().getParcelable("haiku");
+
+        db = DBHelper.getInstance(this);
+
+        haiku = getIntent().getParcelableExtra("haiku");
         Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/Victorian.ttf");
         TextView textview = (TextView) findViewById(R.id.textView15);
         textview.setText(haiku.title);
@@ -42,7 +47,7 @@ public class ViewActivity extends AppCompatActivity {
 
     }
 
-    public void OnClickSend ( View view){
+    public void onClickSend(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Where to Send?")
                 .setItems(pick, new DialogInterface.OnClickListener() {
@@ -67,10 +72,16 @@ public class ViewActivity extends AppCompatActivity {
 
     }
 
-    public void OnClickEdit (View view){
+    public void onClickDelete(View view) {
+        db.deleteHaiku(haiku);
+        finish();
+    }
+
+    public void onClickEdit(View view) {
         Intent intent = new Intent(ViewActivity.this, WritingActivity.class);
         intent.putExtra("previous", "ViewActivity");
         intent.putExtra("haiku", haiku);
+        Log.i("LOG: Sending edit id: ", Integer.toString(haiku.id));
         startActivity(intent);
     }
 

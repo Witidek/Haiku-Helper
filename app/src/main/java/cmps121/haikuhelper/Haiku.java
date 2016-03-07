@@ -55,6 +55,7 @@ public class Haiku implements Parcelable {
     }
 
     public void writeToParcel(Parcel out, int flags) {
+        out.writeInt(id);
         out.writeString(title);
         out.writeString(line1);
         out.writeString(line2);
@@ -75,6 +76,7 @@ public class Haiku implements Parcelable {
     };
 
     private Haiku(Parcel in) {
+        id = in.readInt();
         title = in.readString();
         line1 = in.readString();
         line2 = in.readString();

@@ -36,7 +36,7 @@ public class DBHelper extends SQLiteAssetHelper {
         return instance;
     }
 
-    public void saveHaiku(Haiku haiku) {
+    public int saveHaiku(Haiku haiku) {
         // Connect to writable DB
         SQLiteDatabase db = getWritableDatabase();
 
@@ -48,10 +48,31 @@ public class DBHelper extends SQLiteAssetHelper {
         values.put("line1syl", haiku.line1syl);
         values.put("line2syl", haiku.line2syl);
         values.put("line3syl", haiku.line3syl);
-        long result = db.insert("haiku", "id", values);
-        Log.i("LOG: ", String.format("%d", result));
+        long result = db.insert("haiku", null, values);
 
         // Close stuff
+        db.close();
+        return (int)result;
+    }
+
+    public void updateHaiku(Haiku haiku) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("title", haiku.title);
+        values.put("line1", haiku.line1);
+        values.put("line2", haiku.line2);
+        values.put("line3", haiku.line3);
+        values.put("line1syl", haiku.line1syl);
+        values.put("line2syl", haiku.line2syl);
+        values.put("line3syl", haiku.line3syl);
+        db.update("haiku", values, "ROWID = " + Integer.toString(haiku.id), null);
+
+        db.close();
+    }
+
+    public void deleteHaiku(Haiku haiku) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("haiku", "ROWID = " + Integer.toString(haiku.id), null);
         db.close();
     }
 

@@ -48,8 +48,8 @@
         android:layout_below="@+id/line1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/button"
-        android:layout_toLeftOf="@+id/button" />
+        android:layout_toStartOf="@+id/saveHaikuButton"
+        android:layout_toLeftOf="@+id/saveHaikuButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -62,8 +62,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="21dp"
-        android:layout_toStartOf="@+id/button"
-        android:layout_toLeftOf="@+id/button" />
+        android:layout_toStartOf="@+id/saveHaikuButton"
+        android:layout_toLeftOf="@+id/saveHaikuButton" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -101,8 +101,8 @@
         android:layout_alignParentEnd="true"
         android:gravity="right"
         android:textSize="30dp"
-        android:layout_toEndOf="@+id/button4"
-        android:layout_toRightOf="@+id/button4" />
+        android:layout_toEndOf="@+id/suggestionButton"
+        android:layout_toRightOf="@+id/suggestionButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -123,9 +123,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save Haiku"
-        android:id="@+id/button"
+        android:id="@+id/saveHaikuButton"
         android:onClick="saveHaiku"
-        android:layout_alignTop="@+id/button4"
+        android:layout_alignTop="@+id/suggestionButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Suggestions"
-        android:id="@+id/button4"
+        android:id="@+id/suggestionButton"
         android:onClick="onClickSuggestions"
         android:layout_alignTop="@+id/countSyllablesButton"
         android:layout_centerHorizontal="true" />

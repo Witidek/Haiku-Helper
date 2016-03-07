@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ public class WritingActivity extends AppCompatActivity {
     EditText[] linesText = new EditText[3];
     TextView[] syllablesText = new TextView[3];
     Button countSyllablesButton;
+    Button saveHaikuButton;
     ListView listView;
     SuggestionAdapter suggestionAdapter;
 
@@ -59,11 +61,13 @@ public class WritingActivity extends AppCompatActivity {
         syllablesText[1] = (TextView)findViewById(R.id.line2Syllables);
         syllablesText[2] = (TextView)findViewById(R.id.line3Syllables);
         countSyllablesButton = (Button)findViewById(R.id.countSyllablesButton);
+        saveHaikuButton = (Button)findViewById(R.id.saveHaikuButton);
 
         // Check intent
         Intent intent = getIntent();
         if (intent.hasExtra("haiku")) {
-            Haiku haiku = intent.getParcelableExtra("haiku");
+            saved = true;
+            haiku = intent.getParcelableExtra("haiku");
             titleText.setText(haiku.title);
             linesText[0].setText(haiku.line1);
             linesText[1].setText(haiku.line2);
@@ -84,6 +88,7 @@ public class WritingActivity extends AppCompatActivity {
     public void updateHaiku(final Action onFinished) {
         // Disable button while API requests are still processing
         countSyllablesButton.setEnabled(false);
+        saveHaikuButton.setEnabled(false);
 
         // Enable logging
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -102,6 +107,7 @@ public class WritingActivity extends AppCompatActivity {
         RhymeBrainService service = retrofit.create(RhymeBrainService.class);
 
         // Update haiku lines with EditText fields
+        haiku.title = titleText.getText().toString();
         haiku.line1 = linesText[0].getText().toString();
         haiku.line2 = linesText[1].getText().toString();
         haiku.line3 = linesText[2].getText().toString();
@@ -173,15 +179,18 @@ public class WritingActivity extends AppCompatActivity {
 
                             if (apiRequests == 0) {
                                 countSyllablesButton.setEnabled(true);
+                                saveHaikuButton.setEnabled(true);
                                 switch (onFinished) {
                                     case COUNT:
                                         break;
                                     case SAVE:
                                         if (saved) {
-                                            //db.updateHaiku(haiku);
+                                            db.updateHaiku(haiku);
+                                            Toast.makeText(getApplicationContext(), "Existing haiku saved!", Toast.LENGTH_LONG).show();
                                         }else {
-                                            db.saveHaiku(haiku);
-                                            Toast.makeText(getApplicationContext(), "Haiku saved!", Toast.LENGTH_LONG).show();
+                                            haiku.id = db.saveHaiku(haiku);
+                                            saved = true;
+                                            Toast.makeText(getApplicationContext(), "New haiku saved!", Toast.LENGTH_LONG).show();
                                         }
                                         break;
                                     default:
@@ -201,7 +210,13 @@ public class WritingActivity extends AppCompatActivity {
     }
 
     public void saveHaiku(View view) {
-        updateHaiku(Action.SAVE);
+        if (titleText.getText().length() > 50) {
+            Toast.makeText(this, "Title cannot exceed 50 characters!", Toast.LENGTH_SHORT).show();
+        }else if (titleText.getText().length() == 0) {
+            Toast.makeText(this, "Title cannot be empty!", Toast.LENGTH_SHORT).show();
+        }else {
+            updateHaiku(Action.SAVE);
+        }
     }
 
     public void onClickCountSyllables(View view) {

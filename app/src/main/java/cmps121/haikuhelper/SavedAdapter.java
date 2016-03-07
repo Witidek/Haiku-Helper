@@ -65,8 +65,8 @@ public class SavedAdapter extends ArrayAdapter<Haiku> {
         }
         ViewHolder holder = (ViewHolder) rowView.getTag();
         holder.titleView.setText(String.format(haiku.get(position).title));
-        int totalsyllables = haiku.get(position).line1syl + haiku.get(position).line2syl + haiku.get(position).line3syl;
-        if(totalsyllables < 17){
+        int totalSyllables = haiku.get(position).line1syl + haiku.get(position).line2syl + haiku.get(position).line3syl;
+        if(totalSyllables != 17){
             holder.completeView.setText("No");
         }else{
             holder.completeView.setText("Yes");
