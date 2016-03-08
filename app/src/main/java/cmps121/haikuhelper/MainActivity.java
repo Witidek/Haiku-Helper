@@ -1,9 +1,12 @@
 package cmps121.haikuhelper;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +15,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DBHelper db = DBHelper.getInstance(this);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Japan.ttf");
+        TextView textview = (TextView) findViewById(R.id.textView14);
+        textview.setTypeface(custom_font);
+        Button button = (Button) findViewById(R.id.button);
+        button.setTypeface(custom_font);
+        button = (Button) findViewById(R.id.button2);
+        button.setTypeface(custom_font);
+        button = (Button) findViewById(R.id.button3);
+        button.setTypeface(custom_font);
     }
 
     public void onClickWritingActivity(View view) {
