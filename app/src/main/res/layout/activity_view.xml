@@ -16,7 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/textView15"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="78dp"
         android:textColor="#000000"
         android:gravity="center"
         android:textSize="70sp"
@@ -34,30 +34,6 @@
         android:textSize="48dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView17"
-        android:layout_below="@+id/textView16"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:textSize="48dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView18"
-        android:layout_below="@+id/textView17"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:textSize="48dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -86,5 +62,13 @@
         android:onClick="onClickDelete"
         android:id="@+id/button6"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read To Me"
+        android:id="@+id/button"
+        android:layout_above="@+id/button4"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
