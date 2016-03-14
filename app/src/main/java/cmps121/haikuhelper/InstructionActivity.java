@@ -60,13 +60,13 @@ public class InstructionActivity extends AppCompatActivity {
                     viewFlipper.setInAnimation(this, R.anim.in_from_left);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_right);
                     // Show the next Screen
-                    viewFlipper.showNext();
+                    viewFlipper.showPrevious();
                 }
 
                 // if right to left swipe on screen
                 if (lastX > currentX)
                 {
-                    if (viewFlipper.getDisplayedChild() == 1){
+                    if (viewFlipper.getDisplayedChild() == 2){
                         Intent intent = new Intent(InstructionActivity.this, WritingActivity.class);
                         startActivity(intent);
                         finish();
@@ -77,7 +77,7 @@ public class InstructionActivity extends AppCompatActivity {
                     viewFlipper.setInAnimation(this, R.anim.in_from_right);
                     viewFlipper.setOutAnimation(this, R.anim.out_to_left);
                     // Show The Previous Screen
-                    viewFlipper.showPrevious();
+                    viewFlipper.showNext();
                 }
                 break;
             }
