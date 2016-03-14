@@ -18,6 +18,16 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/textView20" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="No Haikus Saved"
+        android:id="@+id/textView17"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
