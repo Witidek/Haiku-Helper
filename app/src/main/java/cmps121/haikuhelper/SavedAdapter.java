@@ -17,24 +17,15 @@ import android.widget.TextView;
  * Created by Kevin on 3/7/2016.
  */
 public class SavedAdapter extends ArrayAdapter<Haiku> {
-    /**
-     * Context this instance was created from
-     */
     Context context;
-    /**
-     * ArrayList of items to display
-     */
     ArrayList<Haiku> haiku;
 
     static class ViewHolder {
         public TextView titleView;
         public TextView completeView;
-
     }
 
-    /**
-     * Constructor for CartAdapter
-     */
+    // Constructor
     public SavedAdapter(Context context, ArrayList<Haiku> haiku) {
         super(context, R.layout.row_saved, haiku);
         this.context = context;
@@ -71,6 +62,4 @@ public class SavedAdapter extends ArrayAdapter<Haiku> {
 
         return rowView;
     }
-
-
 }

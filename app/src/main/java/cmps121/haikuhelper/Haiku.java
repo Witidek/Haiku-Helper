@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public class Haiku implements Parcelable {
 
+    // Table column names
     public static final String KEY_id = "id";
     public static final String KEY_title = "title";
     public static final String KEY_line1 = "line1";
@@ -18,22 +19,28 @@ public class Haiku implements Parcelable {
     public static final String KEY_line2syl = "line2syl";
     public static final String KEY_line3syl = "line3syl";
 
+    // Fields
     String title;
     String line1;
     String line2;
     String line3;
-
     int line1syl;
     int line2syl;
     int line3syl;
     int id;
 
+    // Empty constructor
     public Haiku() {
+        this.title = "";
+        this.line1 = "";
+        this.line2 = "";
+        this.line3 = "";
         this.line1syl = 0;
         this.line2syl = 0;
         this.line3syl = 0;
     }
 
+    // General constructor
     public Haiku(int id, String title, String line1, String line2, String line3, int line1syl, int line2syl, int line3syl) {
         this.id = id;
         this.title = title;
@@ -45,6 +52,8 @@ public class Haiku implements Parcelable {
         this.line3syl = line3syl;
 
     }
+
+    // toString
     public String toString() {
         return this.title;
     }

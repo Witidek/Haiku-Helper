@@ -27,15 +27,20 @@ public class ViewActivity extends AppCompatActivity {
     Button b1;
     float speechrate = (float)0.5;      //speed of voice
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
 
         db = DBHelper.getInstance(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         haiku = getIntent().getParcelableExtra("haiku");
+        haiku = db.getHaiku(haiku.id);
         Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/Victorian.ttf");
         String title = haiku.title;
 
@@ -55,30 +60,30 @@ public class ViewActivity extends AppCompatActivity {
         pick[0] = "Text Message";
         pick[1] = "Email";
 
-        //button used to read
-        b1=(Button)findViewById(R.id.button);
-        // method to read the string
-        t0=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+        // Button used to read
+        b1 = (Button)findViewById(R.id.button);
+        // Method to read the string
+        t0 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
-                    t0.setLanguage(Locale.JAPANESE);
+                    t0.setLanguage(Locale.ENGLISH);
                     t0.setSpeechRate((float)0.5);
                 }
             }
         });
 
-        t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+        t1 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
-                    t1.setLanguage(Locale.JAPANESE);
+                    t1.setLanguage(Locale.ENGLISH);
                     t1.setSpeechRate(speechrate);
                 }
             }
         });
 
-        //when button clicked, start reading the string
+        // When button clicked, start reading the string
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             @SuppressWarnings("deprecation")
@@ -142,7 +147,7 @@ public class ViewActivity extends AppCompatActivity {
         Intent intent = new Intent(ViewActivity.this, WritingActivity.class);
         intent.putExtra("previous", "ViewActivity");
         intent.putExtra("haiku", haiku);
-        Log.i("LOG: Sending edit id: ", Integer.toString(haiku.id));
+        //Log.i("LOG: Sending edit id: ", Integer.toString(haiku.id));
         startActivity(intent);
     }
 

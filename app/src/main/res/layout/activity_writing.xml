@@ -11,10 +11,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Haiku"
+        android:text="Lines"
         android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/primerdivisor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -50,7 +51,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/saveHaikuButton"
-        android:layout_toLeftOf="@+id/saveHaikuButton" />
+        android:layout_alignRight="@+id/line1"
+        android:layout_alignEnd="@+id/line1" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -59,25 +61,23 @@
         android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:singleLine="true"
         android:background="@android:drawable/edit_text"
-        android:layout_below="@+id/titleText"
+        android:layout_below="@+id/textView"
+        android:layout_toLeftOf="@+id/line1Syllables"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp"
-        android:layout_toStartOf="@+id/saveHaikuButton"
-        android:layout_toLeftOf="@+id/saveHaikuButton" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0/5"
         android:id="@+id/line1Syllables"
-        android:layout_alignBottom="@+id/line1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:gravity="right"
         android:textSize="30dp"
-        android:layout_toRightOf="@+id/line2"
-        android:layout_toEndOf="@+id/line2" />
+        android:layout_above="@+id/line2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -110,15 +110,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/titleText"
         android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:background="@android:drawable/edit_text"
+        android:hint="Enter Title Here"
         android:singleLine="true"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/textView"
         android:gravity="center"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="Title" />
+        android:layout_alignRight="@+id/line1Syllables"
+        android:layout_alignEnd="@+id/line1Syllables" />
 
     <Button
         android:layout_width="wrap_content"
@@ -147,6 +147,27 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:visibility="invisible"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
         android:layout_above="@+id/countSyllablesButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Syllable Count"
+        android:id="@+id/textView14"
+        android:layout_below="@+id/primerdivisor"
+        android:layout_alignRight="@+id/primerdivisor"
+        android:layout_alignEnd="@+id/primerdivisor" />
+
+    <View android:id="@+id/primerdivisor"
+        android:layout_height="2dp"
+        android:layout_width="fill_parent"
+        android:background="#818080"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/titleText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

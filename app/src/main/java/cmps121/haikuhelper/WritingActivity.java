@@ -32,6 +32,7 @@ public class WritingActivity extends AppCompatActivity {
 
     DBHelper db;
     Haiku haiku = new Haiku();
+    Intent intent;
 
     EditText titleText;
     EditText[] linesText = new EditText[3];
@@ -64,7 +65,7 @@ public class WritingActivity extends AppCompatActivity {
         saveHaikuButton = (Button)findViewById(R.id.saveHaikuButton);
 
         // Check intent
-        Intent intent = getIntent();
+        intent = getIntent();
         if (intent.hasExtra("haiku")) {
             saved = true;
             haiku = intent.getParcelableExtra("haiku");
@@ -77,9 +78,11 @@ public class WritingActivity extends AppCompatActivity {
             syllablesText[2].setText(String.format("%d/5", haiku.line3syl));
         }
 
+        // Get initial suggestions
         ArrayList<ArrayList<String>> wordsList;
         wordsList = db.getSuggestions();
 
+        // Setup ListView for suggestions
         suggestionAdapter = new SuggestionAdapter(this, wordsList);
         listView = (ListView)findViewById(R.id.suggestionList);
         listView.setAdapter(suggestionAdapter);
@@ -139,6 +142,7 @@ public class WritingActivity extends AppCompatActivity {
                         apiRequests--;
                         // isSuccess() checks for a 200 code
                         if (response.isSuccess()) {
+                            // Write syllable count to TextView and color appropriately
                             switch(index) {
                                 case 0:
                                     haiku.line1syl += Integer.parseInt(response.body().syllables);
@@ -154,9 +158,9 @@ public class WritingActivity extends AppCompatActivity {
                                 case 1:
                                     haiku.line2syl += Integer.parseInt(response.body().syllables);
                                     syllablesText[index].setText(String.format("%d/7", haiku.line2syl));
-                                    if (haiku.line1syl == 7) {
+                                    if (haiku.line2syl == 7) {
                                         syllablesText[index].setTextColor(Color.GREEN);
-                                    }else if (haiku.line1syl > 7) {
+                                    }else if (haiku.line2syl > 7) {
                                         syllablesText[index].setTextColor(Color.RED);
                                     }else {
                                         syllablesText[index].setTextColor(Color.BLACK);
@@ -165,9 +169,9 @@ public class WritingActivity extends AppCompatActivity {
                                 case 2:
                                     haiku.line3syl += Integer.parseInt(response.body().syllables);
                                     syllablesText[index].setText(String.format("%d/5", haiku.line3syl));
-                                    if (haiku.line1syl == 5) {
+                                    if (haiku.line3syl == 5) {
                                         syllablesText[index].setTextColor(Color.GREEN);
-                                    }else if (haiku.line1syl > 5) {
+                                    }else if (haiku.line3syl > 5) {
                                         syllablesText[index].setTextColor(Color.RED);
                                     }else {
                                         syllablesText[index].setTextColor(Color.BLACK);
@@ -177,6 +181,7 @@ public class WritingActivity extends AppCompatActivity {
                                     break;
                             }
 
+                            // Action to take after all API requests have finished
                             if (apiRequests == 0) {
                                 countSyllablesButton.setEnabled(true);
                                 saveHaikuButton.setEnabled(true);
@@ -209,6 +214,7 @@ public class WritingActivity extends AppCompatActivity {
         }
     }
 
+    // Save haiku, whether new or existing
     public void saveHaiku(View view) {
         if (titleText.getText().length() > 50) {
             Toast.makeText(this, "Title cannot exceed 50 characters!", Toast.LENGTH_SHORT).show();
@@ -219,10 +225,12 @@ public class WritingActivity extends AppCompatActivity {
         }
     }
 
+    // Update syllable counts
     public void onClickCountSyllables(View view) {
         updateHaiku(Action.COUNT);
     }
 
+    // Load or reload suggestions ListView
     public void onClickSuggestions(View view) {
         listView.setVisibility(View.VISIBLE);
         suggestionAdapter = new SuggestionAdapter(this, db.getSuggestions());

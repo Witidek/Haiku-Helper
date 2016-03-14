@@ -14,7 +14,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialize database singleton
         DBHelper db = DBHelper.getInstance(this);
+
+        // Custom font
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Japan.ttf");
         TextView textview = (TextView) findViewById(R.id.textView14);
         textview.setTypeface(custom_font);
