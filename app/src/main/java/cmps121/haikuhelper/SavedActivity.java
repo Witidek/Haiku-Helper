@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView;
 
@@ -29,9 +30,22 @@ public class SavedActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        listView.setEmptyView(findViewById(R.id.textView17));
         ArrayList<Haiku> getHaiku = db.getHaiku();
         Toast.makeText(this, String.format("Haikus loaded: %d", getHaiku.size()), Toast.LENGTH_LONG).show();
         final ArrayAdapter<Haiku> adapter = new SavedAdapter(this, getHaiku);
+        if(getHaiku.isEmpty()){
+            TextView textView = (TextView) findViewById(R.id.textView20);
+            textView.setVisibility(View.INVISIBLE);
+            textView = (TextView) findViewById(R.id.textView21);
+            textView.setVisibility(View.INVISIBLE);
+
+        }else {
+            TextView textView = (TextView) findViewById(R.id.textView20);
+            textView.setVisibility(View.VISIBLE);
+            textView = (TextView) findViewById(R.id.textView21);
+            textView.setVisibility(View.VISIBLE);
+        }
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
